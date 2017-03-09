@@ -1,29 +1,40 @@
 var titulo = document.querySelector('.titulo')
 titulo.textContent = 'Aparecida Nutricionista'
 
-var paciente = document.querySelector('#primeiro-paciente')
+var pacientes = document.querySelectorAll('.paciente')
 
-var peso = paciente.querySelector('.info-peso').textContent
-var altura = paciente.querySelector('.info-altura').textContent
-
-
-var tdIMC = paciente.querySelector('.info-imc')
-
-var pesoValido = true
-var alturaValida = true
-
-if (peso <= 0 || peso >= 1000) {
-  pesoValido = false
-  tdIMC.textContent = 'Peso Inválido'
+for (var index = 0; index < pacientes.length; index++) {
+  var paciente = pacientes[index]
+  CalculaIMC(paciente)
 }
 
-if (altura <= 0 || altura >= 4) {
-  alturaValida = false
-  tdIMC.textContent = 'Altura Inválida'
-}
+function CalculaIMC (paciente) {
+  var peso = paciente.querySelector('.info-peso').textContent
+  var altura = paciente.querySelector('.info-altura').textContent
 
-if (pesoValido && alturaValida) {
-  var imc = peso / (altura * altura)
-  tdIMC.textContent = imc
+  var tdIMC = paciente.querySelector('.info-imc')
+
+  var pesoValido = true
+  var alturaValida = true
+
+  var errorMessage = ''
+
+  if (peso <= 0 || peso >= 1000) {
+    pesoValido = false
+    errorMessage = 'Peso Inválido'
+  }
+
+  if (altura <= 0 || altura >= 4) {
+    alturaValida = false
+    errorMessage = 'Altura Inválida'
+  }
+
+  if (pesoValido && alturaValida) {
+    var imc = peso / (altura * altura)
+    tdIMC.textContent = imc.toFixed(2)
+  } else {
+    tdIMC.textContent = errorMessage
+    paciente.classList.add('paciente-invalido')
+  }
 }
 
