@@ -1,3 +1,4 @@
+/* global Paciente */
 
 var botaoAdicionar = document.querySelector('#adicionar-paciente')
 
@@ -7,29 +8,13 @@ botaoAdicionar.addEventListener('click', function (event) {
 
   var paciente = obtemPacienteDoFormulario(form)
 
-  var pacientTr = document.createElement('tr')
-
-  var nomeTD = document.createElement('td')
-  var pesoTD = document.createElement('td')
-  var alturaTD = document.createElement('td')
-  var gorduraTD = document.createElement('td')
-  var imcTD = document.createElement('td')
-
-  nomeTD.textContent = paciente.nome
-  pesoTD.textContent = paciente.peso
-  alturaTD.textContent = paciente.altura
-  gorduraTD.textContent = paciente.gordura
-  imcTD.textContent = paciente.imc
-
-  pacientTr.appendChild(nomeTD)
-  pacientTr.appendChild(pesoTD)
-  pacientTr.appendChild(alturaTD)
-  pacientTr.appendChild(gorduraTD)
-  pacientTr.appendChild(imcTD)
+  var pacientTr = montaTr(paciente)
 
   var table = document.querySelector('#tabela-pacientes')
 
   table.appendChild(pacientTr)
+
+  form.reset()
 })
 
 function obtemPacienteDoFormulario (form) {
@@ -45,4 +30,25 @@ function obtemPacienteDoFormulario (form) {
   var paciente = new Paciente(nome, peso, altura, gordura)
 
   return paciente
+}
+
+function montaTd (dado, classe) {
+  var td = document.createElement('td')
+  td.classList.add(classe)
+  td.textContent = dado
+  return td
+}
+
+function montaTr (paciente) {
+  // Cria TR
+  var pacienteTr = document.createElement('tr')
+  pacienteTr.classList.add('paciente')
+  // Cria as TD's e a adiciona dentro da TR
+  pacienteTr.appendChild(montaTd(paciente.nome, 'info-nome'))
+  pacienteTr.appendChild(montaTd(paciente.peso, 'info-peso'))
+  pacienteTr.appendChild(montaTd(paciente.altura, 'info-altura'))
+  pacienteTr.appendChild(montaTd(paciente.gordura, 'info-gordura'))
+  pacienteTr.appendChild(montaTd(paciente.imc, 'info-imc'))
+  // retorna a TR
+  return pacienteTr
 }
