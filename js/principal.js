@@ -30,44 +30,10 @@ function CalculaIMC (paciente) {
   }
 
   if (pesoValido && alturaValida) {
-    var imc = peso / (altura * altura)
-    tdIMC.textContent = imc.toFixed(2)
+    var imc = calculaIMC(peso, altura)
+    tdIMC.textContent = imc
   } else {
     tdIMC.textContent = errorMessage
     paciente.classList.add('paciente-invalido')
   }
 }
-
-var botaoAdicionar = document.querySelector('#adicionar-paciente')
-
-botaoAdicionar.addEventListener('click', function (event) {
-  event.preventDefault()
-  var form = document.querySelector('#form-adiciona')
-
-  var nome = form.nome.value
-  var peso = form.peso.value
-  var altura = form.altura.value
-  var gordura = form.gordura.value
-
-  var pacientTr = document.createElement('tr')
-
-  var nomeTD = document.createElement('td')
-  var pesoTD = document.createElement('td')
-  var alturaTD = document.createElement('td')
-  var gorduraTD = document.createElement('td')
-
-  nomeTD.textContent = nome
-  pesoTD.textContent = peso
-  alturaTD.textContent = altura
-  gorduraTD.textContent = gordura
-
-  pacientTr.appendChild(nomeTD)
-  pacientTr.appendChild(pesoTD)
-  pacientTr.appendChild(alturaTD)
-  pacientTr.appendChild(gorduraTD)
-
-  var table = document.querySelector('#tabela-pacientes')
-
-  table.appendChild(pacientTr)
-})
-
