@@ -1,6 +1,6 @@
 // Classe que representa o paciente
 
-function paciente (nome, peso, altura, gordura) {
+function Paciente (nome, peso, altura, gordura) {
   this.nome = nome
   this.peso = peso
   this.altura = altura
