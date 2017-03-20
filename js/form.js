@@ -8,8 +8,11 @@ botaoAdicionar.addEventListener('click', function (event) {
 
   var paciente = obtemPacienteDoFormulario(form)
 
-  if (!validaPaciente(paciente)) {
-    console.log('Paciente Inválido')
+  // Adição aqui
+  var erros = validaPaciente(paciente)
+
+  if (erros.length > 0) {
+    exibeMensagensDeErro(erros)
     return
   }
 
@@ -56,4 +59,15 @@ function montaTr (paciente) {
   pacienteTr.appendChild(montaTd(paciente.imc, 'info-imc'))
   // retorna a TR
   return pacienteTr
+}
+
+function exibeMensagensDeErro (erros) {
+  var ul = document.querySelector('#mensagens-erro')
+  ul.innerHTML = ''
+
+  erros.forEach(function (erro) {
+      var li = document.createElement('li')
+      li.textContent = erro
+      ul.appendChild(li)
+    })
 }
