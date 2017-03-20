@@ -19,12 +19,12 @@ function CalculaIMC (paciente) {
 
   var errorMessage = ''
 
-  if (peso <= 0 || peso >= 1000) {
+  if (!validaPeso(peso)) {
     pesoValido = false
     errorMessage = 'Peso Inválido'
   }
 
-  if (altura <= 0 || altura >= 4) {
+  if (!validaAltura(altura)) {
     alturaValida = false
     errorMessage = 'Altura Inválida'
   }

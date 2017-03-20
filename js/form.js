@@ -8,6 +8,11 @@ botaoAdicionar.addEventListener('click', function (event) {
 
   var paciente = obtemPacienteDoFormulario(form)
 
+  if (!validaPaciente(paciente)) {
+    console.log('Paciente Inválido')
+    return
+  }
+
   var pacientTr = montaTr(paciente)
 
   var table = document.querySelector('#tabela-pacientes')

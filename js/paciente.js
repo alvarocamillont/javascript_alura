@@ -14,3 +14,30 @@ function calculaIMC (peso, altura) {
   return imc
 }
 
+function validaPaciente (paciente) {
+  var pesoValido = validaPeso(paciente.peso)
+  var alturaValida = validaAltura(paciente.altura)
+
+  if (pesoValido && alturaValida) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function validaPeso (peso) {
+  if (peso <= 0 || peso >= 1000) {
+    return false
+  } else {
+    return true
+  }
+}
+
+function validaAltura (altura) {
+  if (altura <= 0 || altura >= 4) {
+    return false
+  } else {
+    return true
+  }
+}
+
