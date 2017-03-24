@@ -6,7 +6,6 @@ botaoAdicionar.addEventListener('click', function () {
   xhr.open('GET', 'https://api-pacientes.herokuapp.com/pacientes')
 
   xhr.addEventListener('load', function () {
-    // Adição aqui
     var erroAjax = document.querySelector('#erro-ajax')
 
     if (xhr.status === 200) {
